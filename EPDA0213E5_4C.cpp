@@ -27,14 +27,16 @@ uint32_t* getimgbyname(const char* img_name) {
 int main()
 {
     stdio_init_all();
-    // SPI initialisation. This example will use SPI at 1MHz.
-    epd_init();
-    epd_write_img(getimgbyname("test012.png"));
     
-    // For more examples of SPI use see https://github.com/raspberrypi/pico-examples/tree/master/spi
+    epd_init();
+    epd_write_img(getimgbyname("TAA_logo.png"));
+    
 
     while (true) {
         printf("Hello, world!\n");
         sleep_ms(1000);
     }
+    return 0;
+    
 }
+

@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+
+#ifdef _PICO_H
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 
@@ -14,6 +16,7 @@
 #define EPD_DC 16
 #define EPD_RST 20
 #define EPD_BUSY 21
+#endif
 
 #define SOURCE_BITS 122
 #define GATE_BITS 250

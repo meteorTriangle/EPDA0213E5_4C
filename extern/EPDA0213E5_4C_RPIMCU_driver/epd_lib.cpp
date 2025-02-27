@@ -1,41 +1,52 @@
 #include "epd_lib.h"
 
 void epd_output_byte(uint8_t data) {
+    #ifdef _PICO_H
     spi_write_blocking(spi0, &data, sizeof(uint8_t));
+    #endif
 }
 
 void epd_write_command(uint8_t command) {
+    #ifdef _PICO_H
     gpio_put(EPD_DC, false);
     gpio_put(EPD_SPI_CS, false);
     sleep_us(1);
     epd_output_byte(command);
     gpio_put(EPD_SPI_CS, true);
+    #endif
 }
 
 void epd_write_data(uint8_t data) {
+    #ifdef _PICO_H
     gpio_put(EPD_DC, true);
     gpio_put(EPD_SPI_CS, false);
     sleep_us(1);
     epd_output_byte(data);
     gpio_put(EPD_SPI_CS, true);
+    #endif
 }
 
 void epd_wait_until_idle(void) {
+    #ifdef _PICO_H
     sleep_ms(2);
     while(gpio_get(EPD_BUSY) != 1) {
         tight_loop_contents();
     }
+    #endif
 }
 
 void epd_hw_reset(void) {
+    #ifdef _PICO_H
     sleep_ms(20);
     gpio_put(EPD_RST, false);
     sleep_ms(40);
     gpio_put(EPD_RST, true);
     sleep_ms(50);
+    #endif
 }
 
 void epd_init(void) {
+    #ifdef _PICO_H
     gpio_init(EPD_SPI_CS);
     gpio_init(EPD_DC);
     gpio_init(EPD_RST);
@@ -124,6 +135,7 @@ void epd_init(void) {
     
     epd_write_command(0xE9);
     epd_write_data(0x01); 
+    #endif
 }
 
 uint8_t epd_img_fetch_hex_32(int y, int x, uint32_t* img_src) {
@@ -138,6 +150,7 @@ uint8_t epd_img_fetch_hex_32(int y, int x, uint32_t* img_src) {
 }
 
 void epd_write_img(uint32_t* img_src) {
+    #ifdef _PICO_H
     epd_write_command(0x10);
 
     for(uint i = 0; i < GATE_BITS; i++) {
@@ -158,4 +171,5 @@ void epd_write_img(uint32_t* img_src) {
     gpio_put(EPD_RST, false);
     gpio_put(EPD_DC, false);
     gpio_put(EPD_SPI_CS, false);
+    #endif
 }
