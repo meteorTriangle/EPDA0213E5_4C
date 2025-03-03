@@ -17,9 +17,11 @@ This project implements a driver for the EPDA0213E5_4C e-paper display using a R
 
 ## Pin Connections
 
+![電子紙模組接線圖-HMD](https://hackmd.io/_uploads/rJpVUtgi1l.png)
+
 | Pico Pin | Display Pin | Function |
 |----------|-------------|----------|
-| GPIO 19  | DIN         | SPI TX   |
+| GPIO 19  | MOSI        | SPI TX   |
 | GPIO 18  | CLK         | SPI SCK  |
 | GPIO 17  | CS          | SPI CS   |
 | GPIO 16  | DC          | Data/Command |
