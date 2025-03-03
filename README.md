@@ -1,4 +1,6 @@
 # EPDA0213E5_4C E-Paper Display Driver
+[zh-TW](README_ZH-TW.md)
+
 
 This project implements a driver for the EPDA0213E5_4C e-paper display using a Raspberry Pi Pico microcontroller. The driver supports 4-color display (black, white, red, and yellow) and includes tools for converting PNG images to the required bitmap format.
 
@@ -104,3 +106,5 @@ When preparing PNG images, use these exact RGB values for proper color rendering
 ## License
 
 This project is open-source and available under the MIT License.
+
+| last update: 2025-03-03
